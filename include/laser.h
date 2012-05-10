@@ -71,6 +71,10 @@ typedef struct {
   double(*custom)(double, double, unsigned long);
 } laser_reduction;
 
+typedef struct {
+  double *values;
+} laser_accumulator;
+
 /********************************************************************
  *
  *   FUNCTION createReport
@@ -143,18 +147,27 @@ laser_reduction *createReduction(double(*custom)(double, double, unsigned long))
  *******************************************************************/
 void reduce(laser_reduction *reducer, double val);
 
+double getReductionValue(laser_reduction *reducer);
+
 /********************************************************************
  *   FUNCTION createReductionEvent
  *   Generate an event from the current state of a reducer
  *
- *   Inputs: aggregator - Pointer to reduction object
- *              options - Statistics to report in this event
- *                title - Name for the event
- *                 desc - Description of the event
+ *   Inputs: reducer - Pointer to reduction object
+ *           options - Statistics to report in this event
+ *             title - Name for the event
+ *              desc - Description of the event
  *
  *   Outputs: Event object pointer (laser_event *)
  *******************************************************************/
 laser_event *createReductionEvent(laser_reduction *reducer, short options, char *title, char *desc);
+
+laser_accumulator *createAccumulator();
+
+void accumulate(laser_accumulator *accumulator, double val);
+
+laser_event *createAccumulatorEvent(laser_accumulator *accumulator, short options);
+
 
 /********************************************************************
  *

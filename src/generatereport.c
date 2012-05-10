@@ -19,8 +19,6 @@ void generateReport(laser_report *report) {
       //tp = fopen("default.tpl", "r");
     }
 
-
-
     switch (report->filetype) {
       case LASER_OUTPUT_TXT: //Output a plain text file
         
