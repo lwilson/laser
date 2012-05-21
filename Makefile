@@ -1,4 +1,4 @@
-OBJS = src/createreport.o src/createevent.o src/addevent.o src/generatereport.o src/reduction.o
+OBJS = src/report.o src/event.o src/reduction.o src/accumulator.o
 
 static: $(OBJS)
 	mkdir -p lib

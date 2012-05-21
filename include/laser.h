@@ -72,7 +72,9 @@ typedef struct {
 } laser_reduction;
 
 typedef struct {
-  double *values;
+  short acctype;
+  unsigned long numvals;
+  void **values;
 } laser_accumulator;
 
 /********************************************************************
@@ -162,9 +164,9 @@ double getReductionValue(laser_reduction *reducer);
  *******************************************************************/
 laser_event *createReductionEvent(laser_reduction *reducer, short options, char *title, char *desc);
 
-laser_accumulator *createAccumulator();
+laser_accumulator *createAccumulator(short acctype);
 
-void accumulate(laser_accumulator *accumulator, double val);
+void accumulate(laser_accumulator *accumulator, void *val);
 
 laser_event *createAccumulatorEvent(laser_accumulator *accumulator, short options);
 
